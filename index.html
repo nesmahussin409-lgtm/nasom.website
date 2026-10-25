@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Made by Nasom 💜</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --blue: #00c8ff;
+    --purple: #a100ff;
+    --pink: #ff48ed;
+}
+
+body {
+    background: #03000d;
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background:
+        radial-gradient(circle at 20% 20%, #250052, transparent 45%),
+        radial-gradient(circle at 80% 80%, #001d55, transparent 45%),
+        linear-gradient(135deg, #03000d, #100022, #000b24);
+    background-size: 200% 200%;
+    animation: sky 10s ease-in-out infinite alternate;
+}
+
+@keyframes sky {
+    to { background-position: 100% 100%; }
+}
+
+#stars {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.page {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: opacity .8s, transform .8s;
+}
+
+.page.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* =========================
+   HOMEPAGE
+========================= */
+
+#home {
+    transform: scale(1.04);
+}
+
+#home.active {
+    transform: scale(1);
+}
+
+.logo {
+    direction: ltr;
+    font-size: clamp(35px, 7vw, 78px);
+    font-weight: bold;
+    letter-spacing: 2px;
+
+    color: white;
+
+    text-shadow:
+        0 0 10px var(--blue),
+        0 0 25px var(--purple),
+        0 0 55px var(--purple);
+
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    to { filter: brightness(1.6); }
+}
+
+.homeSubtitle {
+    margin-top: 20px;
+    color: #c7aaff;
+    font-size: 14px;
+    letter-spacing: 5px;
+}
+
+button {
+    font-family: inherit;
+    color: white;
+    font-size: 15px;
+
+    background: rgba(30, 0, 70, .85);
+    border: 1px solid var(--purple);
+    border-radius: 40px;
+
+    padding: 13px 25px;
+    min-height: 44px;
+
+    cursor: pointer;
+
+    box-shadow: 0 0 14px #6500b5;
+
+    transition: transform .25s, box-shadow .25s;
+}
+
+button:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 0 22px var(--blue), 0 0 30px var(--purple);
+}
+
+#enterBtn {
+    margin-top: 42px;
+    padding: 16px 38px;
+    border-color: var(--blue);
+    letter-spacing: 2px;
+}
+
+/* =========================
+   ROBOT SCREEN
+========================= */
+
+#robotPage {
+    gap: 15px;
+}
+
+.pageTitle {
+    position: absolute;
+    top: 22px;
+    direction: ltr;
+
+    color: #e8d5ff;
+    font-size: clamp(18px, 3vw, 27px);
+
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px var(--purple);
+}
+
+.presentation {
+    width: min(1000px, 100%);
+    display: grid;
+    grid-template-columns: 170px minmax(0, 1fr);
+    align-items: center;
+    gap: 25px;
+    direction: ltr;
+}
+
+/* Robot */
+
+.robotArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.robot {
+    width: 130px;
+    position: relative;
+    filter: drop-shadow(0 0 15px #7400ff);
+    animation: robotFloat 3s ease-in-out infinite;
+}
+
+@keyframes robotFloat {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-11px) rotate(2deg); }
+}
+
+.antenna {
+    position: relative;
+    width: 4px;
+    height: 24px;
+    margin: auto;
+
+    background: var(--blue);
+    box-shadow: 0 0 10px var(--blue);
+}
+
+.antenna::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: -5px;
+
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+
+    background: var(--pink);
+    box-shadow: 0 0 15px var(--pink);
+
+    animation: glow 1s infinite alternate;
+}
+
+.robotHead {
+    width: 120px;
+    height: 95px;
+    margin: auto;
+
+    border: 2px solid var(--blue);
+    border-radius: 27px;
+
+    background: linear-gradient(145deg, #20204f, #080016);
+
+    box-shadow:
+        inset 0 0 20px #5400a0,
+        0 0 18px var(--blue);
+}
+
+.robotFace {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.robotEyes {
+    display: flex;
+    gap: 26px;
+}
+
+.robotEye {
+    width: 14px;
+    height: 17px;
+    border-radius: 50%;
+
+    background: #66f3ff;
+    box-shadow: 0 0 12px var(--blue);
+
+    animation: blink 4s infinite;
+}
+
+@keyframes blink {
+    0%, 45%, 48%, 100% { transform: scaleY(1); }
+    46%, 47% { transform: scaleY(.12); }
+}
+
+.robotMouth {
+    width: 31px;
+    height: 5px;
+    border-radius: 20px;
+
+    background: var(--pink);
+    box-shadow: 0 0 12px var(--pink);
+}
+
+.robot.talking .robotMouth {
+    animation: mouthTalk .18s infinite alternate;
+}
+
+@keyframes mouthTalk {
+    to {
+        width: 25px;
+        height: 14px;
+        border-radius: 5px 5px 12px 12px;
+    }
+}
+
+.robotBody {
+    width: 80px;
+    height: 53px;
+    margin: 9px auto 0;
+
+    border: 2px solid var(--purple);
+    border-radius: 17px;
+
+    background: linear-gradient(135deg, #22005c, #06001c);
+    box-shadow: 0 0 16px var(--purple);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--blue);
+    font-weight: bold;
+    font-size: 23px;
+}
+
+.robotLabel {
+    margin-top: 18px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #c4a7ff;
+}
+
+/* Scene card */
+
+.storyCard {
+    width: 100%;
+    min-width: 0;
+    min-height: 370px;
+
+    padding: 24px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+
+    border: 1px solid rgba(166, 95, 255, .6);
+    border-radius: 25px;
+
+    background: rgba(12, 3, 34, .9);
+
+    box-shadow:
+        0 0 25px rgba(117, 0, 255, .25),
+        inset 0 0 20px rgba(117, 0, 255, .08);
+}
+
+.storyCard.change {
+    animation: cardEnter .7s ease;
+}
+
+@keyframes cardEnter {
+    from {
+        opacity: .2;
+        transform: translateY(15px) scale(.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.visual {
+    width: 100%;
+    min-height: 145px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+
+    border-radius: 18px;
+    background: radial-gradient(ellipse, #26005c, #080018 75%);
+}
+
+.visualIcon {
+    font-size: clamp(45px, 7vw, 72px);
+    filter: drop-shadow(0 0 15px #9b53ff);
+    animation: iconFloat 2.5s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+    50% { transform: translateY(-8px) rotate(3deg); }
+}
+
+.visualTitle {
+    color: white;
+    font-size: clamp(23px, 4vw, 35px);
+    font-weight: bold;
+    text-shadow: 0 0 10px var(--purple), 0 0 25px #7000ff;
+}
+
+.visualSubtitle {
+    color: #c7b3ff;
+    font-size: 14px;
+}
+
+.caption {
+    direction: ltr;
+    max-width: 650px;
+    min-height: 75px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+    font-size: clamp(17px, 2.4vw, 22px);
+    line-height: 1.8;
+}
+
+.progressTrack {
+    width: 100%;
+    height: 4px;
+    background: #251642;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progressBar {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue), var(--purple), var(--pink));
+    box-shadow: 0 0 12px var(--purple);
+    transition: width .4s;
+}
+
+.slideNumber {
+    direction: ltr;
+    color: #9b82c4;
+    font-size: 12px;
+}
+
+.status {
+    min-height: 17px;
+    color: #b6a5d9;
+    font-size: 12px;
+}
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+#stopBtn {
+    border-color: var(--pink);
+}
+
+#backBtn {
+    border-color: var(--blue);
+}
+
+/* Responsive */
+
+@media (max-width: 700px) {
+    .presentation {
+        grid-template-columns: 1fr;
+        gap: 2px;
+    }
+
+    .robotArea {
+        transform: scale(.72);
+        min-height: 130px;
+    }
+
+    .robotLabel {
+        margin-top: 7px;
+    }
+
+    .storyCard {
+        min-height: 280px;
+        padding: 14px;
+        gap: 11px;
+    }
+
+    .visual {
+        min-height: 90px;
+    }
+
+    .caption {
+        min-height: 55px;
+    }
+
+    .controls {
+        gap: 7px;
+    }
+
+    button {
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+
+    .pageTitle {
+        top: 10px;
+    }
+}
+
+@media (max-height: 650px) {
+    .presentation {
+        gap: 10px;
+    }
+
+    .storyCard {
+        min-height: 260px;
+        padding: 13px;
+        gap: 10px;
+    }
+
+    .visual {
+        min-height: 90px;
+    }
+
+    #robotPage {
+        gap: 8px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .robot,
+    .visualIcon,
+    .antenna::before,
+    .robotEye {
+        animation: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+<canvas id="stars"></canvas>
+
+<!-- MAIN SCREEN -->
+
+<section class="page active" id="home">
+
+    <h1 class="logo">made by nasom</h1>
+
+    <p class="homeSubtitle">MY LITTLE UNIVERSE</p>
+
+    <button id="enterBtn">CLICK HERE ♥</button>
+
+</section>
+
+<!-- ROBOT SCREEN -->
+
+<section class="page" id="robotPage">
+
+    <h2 class="pageTitle">MEET QUEEN NESMA</h2>
+
+    <div class="presentation">
+
+        <div class="robotArea">
+
+            <div class="robot" id="robot">
+
+                <div class="antenna"></div>
+
+                <div class="robotHead">
+                    <div class="robotFace">
+
+                        <div class="robotEyes">
+                            <div class="robotEye"></div>
+                            <div class="robotEye"></div>
+                        </div>
+
+                        <div class="robotMouth"></div>
+
+                    </div>
+                </div>
+
+                <div class="robotBody">N</div>
+
+            </div>
+
+            <p class="robotLabel">NASOM BOT • ONLINE</p>
+
+        </div>
+
+        <div class="storyCard" id="storyCard">
+
+            <div class="visual" id="visual">
+                <div class="visualIcon">💻</div>
+                <div class="visualTitle">First Version</div>
+            </div>
+
+            <div class="visualSubtitle" id="visualSubtitle">
+                A new beginning
+            </div>
+
+            <p class="caption" id="caption">
+                Welcome to my first webpage.
+            </p>
+
+            <div class="progressTrack">
+                <div class="progressBar" id="progressBar"></div>
+            </div>
+
+            <div class="slideNumber" id="slideNumber">
+                Ready
+            </div>
+
+            <div class="status" id="status">
+                Click Start to begin.
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="controls">
+
+        <button id="startBtn">Start Presentation ▶</button>
+
+        <button id="replayBtn">Replay ↻</button>
+
+        <button id="stopBtn">Stop Speech ■</button>
+
+        <button id="backBtn">Home ↩</button>
+
+    </div>
+
+</section>
+
+<script>
+
+/* =========================
+   PAGE NAVIGATION
+========================= */
+
+const home = document.getElementById("home");
+const robotPage = document.getElementById("robotPage");
+
+function showPage(page) {
+    document.querySelectorAll(".page").forEach(p => {
+        p.classList.remove("active");
+    });
+
+    page.classList.add("active");
+}
+
+document.getElementById("enterBtn").addEventListener("click", () => {
+    showPage(robotPage);
+    startPresentation();
+});
+
+document.getElementById("backBtn").addEventListener("click", () => {
+    stopSpeech();
+    showPage(home);
+});
+
+/* =========================
+   ANIMATED STARS
+========================= */
+
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+
+let stars = [];
+
+function resizeStars() {
+    const dpr = window.devicePixelRatio || 1;
+
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    stars = Array.from({ length: 140 }, () => ({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        size: Math.random() * 1.8 + .3,
+        speed: Math.random() * .35 + .08
+    }));
+}
+
+function animateStars() {
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+    stars.forEach(star => {
+        star.y -= star.speed;
+
+        if (star.y < 0) {
+            star.y = window.innerHeight;
+            star.x = Math.random() * window.innerWidth;
+        }
+
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+        ctx.fillStyle = "#a58aff";
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = "#8200ff";
+        ctx.fill();
+    });
+
+    ctx.shadowBlur = 0;
+    requestAnimationFrame(animateStars);
+}
+
+resizeStars();
+animateStars();
+
+window.addEventListener("resize", resizeStars);
+
+/* =========================
+   PRESENTATION CONTENT
+========================= */
+
+const slides = [
+    {
+        speech:
+            "This is the first version of a webpage that Nesma is testing, and it definitely won't be the final version.",
+
+        title: "First Version",
+        subtitle: "A new beginning",
+        icons: ["💻", "✨"]
+    },
+
+    {
+        speech:
+            "Goodbye, everyone!",
+
+        title: "Goodbye, Everyone!",
+        subtitle: "Thanks for watching",
+        icons: ["👋", "🌟"]
+    }
+];
+
+let currentSlide = 0;
+let runId = 0;
+
+const robot = document.getElementById("robot");
+const storyCard = document.getElementById("storyCard");
+const visual = document.getElementById("visual");
+const visualSubtitle = document.getElementById("visualSubtitle");
+const caption = document.getElementById("caption");
+const progressBar = document.getElementById("progressBar");
+const slideNumber = document.getElementById("slideNumber");
+const status = document.getElementById("status");
+
+/* Update the image and text */
+
+function renderSlide(index) {
+    const slide = slides[index];
+
+    storyCard.classList.remove("change");
+    void storyCard.offsetWidth;
+    storyCard.classList.add("change");
+
+    visual.replaceChildren();
+
+    slide.icons.forEach(icon => {
+        const element = document.createElement("div");
+        element.className = "visualIcon";
+        element.textContent = icon;
+        visual.appendChild(element);
+    });
+
+    const title = document.createElement("div");
+    title.className = "visualTitle";
+    title.textContent = slide.title;
+
+    visual.appendChild(title);
+
+    visualSubtitle.textContent = slide.subtitle;
+    caption.textContent = slide.speech;
+
+    slideNumber.textContent =
+        `${index + 1} / ${slides.length}`;
+
+    progressBar.style.width =
+        `${((index + 1) / slides.length) * 100}%`;
+}
+
+/* =========================
+   FEMALE ENGLISH VOICE
+========================= */
+
+function getFemaleEnglishVoice() {
+    const voices = speechSynthesis.getVoices();
+
+    const englishVoices = voices.filter(voice =>
+        voice.lang.toLowerCase().startsWith("en")
+    );
+
+    // Prefer voices whose names identify them as female.
+    const femaleVoice = englishVoices.find(voice =>
+        /female|woman|zira|aria|jenny|samantha|sara|susan|hazel|sonia|ava|emma|natasha|karen|siri|google.*female/i
+        .test(voice.name)
+    );
+
+    if (femaleVoice) {
+        return femaleVoice;
+    }
+
+    // English fallback if no clearly female voice is available.
+    return (
+        englishVoices.find(voice =>
+            voice.lang.toLowerCase() === "en-us"
+        ) ||
+        englishVoices.find(voice =>
+            voice.lang.toLowerCase() === "en-gb"
+        ) ||
+        englishVoices[0] ||
+        null
+    );
+}
+
+function waitForVoices() {
+    return new Promise(resolve => {
+        const existing = speechSynthesis.getVoices();
+
+        if (existing.length) {
+            resolve(existing);
+            return;
+        }
+
+        let done = false;
+
+        function finish() {
+            if (done) return;
+            done = true;
+
+            speechSynthesis.removeEventListener(
+                "voiceschanged",
+                finish
+            );
+
+            resolve(speechSynthesis.getVoices());
+        }
+
+        speechSynthesis.addEventListener(
+            "voiceschanged",
+            finish
+        );
+
+        setTimeout(finish, 1200);
+    });
+}
+
+/* =========================
+   ROBOT SPEECH
+========================= */
+
+async function speakSlide(id) {
+    if (id !== runId) return;
+
+    if (!robotPage.classList.contains("active")) {
+        stopSpeech();
+        return;
+    }
+
+    if (currentSlide >= slides.length) {
+        robot.classList.remove("talking");
+
+        status.textContent = "Presentation finished.";
+
+        caption.textContent = "Goodbye, everyone!";
+
+        document.getElementById("startBtn").textContent =
+            "Start Again ▶";
+
+        return;
+    }
+
+    renderSlide(currentSlide);
+
+    speechSynthesis.cancel();
+
+    status.textContent = "Preparing voice...";
+
+    await waitForVoices();
+
+    if (id !== runId) return;
+
+    const voice = getFemaleEnglishVoice();
+
+    const utterance = new SpeechSynthesisUtterance(
+        slides[currentSlide].speech
+    );
+
+    utterance.lang = voice ? voice.lang : "en-US";
+    utterance.rate = 0.88;
+    utterance.pitch = 1.08;
+    utterance.volume = 1;
+
+    if (voice) {
+        utterance.voice = voice;
+    }
+
+    utterance.onstart = () => {
+        if (id !== runId) return;
+
+        robot.classList.add("talking");
+        status.textContent = "The robot is speaking...";
+    };
+
+    utterance.onend = () => {
+        if (id !== runId) return;
+
+        robot.classList.remove("talking");
+
+        currentSlide++;
+
+        setTimeout(() => {
+            if (id === runId) {
+                speakSlide(id);
+            }
+        }, 900);
+    };
+
+    utterance.onerror = () => {
+        if (id !== runId) return;
+
+        robot.classList.remove("talking");
+
+        status.textContent =
+            "Voice playback failed. Try again.";
+    };
+
+    speechSynthesis.speak(utterance);
+}
+
+function startPresentation() {
+    if (!("speechSynthesis" in window)) {
+        status.textContent =
+            "Speech is not supported. Try Chrome or Edge.";
+        return;
+    }
+
+    runId++;
+
+    const id = runId;
+
+    speechSynthesis.cancel();
+    currentSlide = 0;
+
+    status.textContent = "Starting presentation...";
+
+    speakSlide(id);
+}
+
+function stopSpeech() {
+    runId++;
+
+    if ("speechSynthesis" in window) {
+        speechSynthesis.cancel();
+    }
+
+    robot.classList.remove("talking");
+    status.textContent = "Speech stopped.";
+}
+
+/* Buttons */
+
+document.getElementById("startBtn").addEventListener(
+    "click",
+    startPresentation
+);
+
+document.getElementById("replayBtn").addEventListener(
+    "click",
+    startPresentation
+);
+
+document.getElementById("stopBtn").addEventListener(
+    "click",
+    stopSpeech
+);
+
+</script>
+
+</body>
+</html>
